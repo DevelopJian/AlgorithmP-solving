@@ -1,12 +1,7 @@
 from collections import deque
 
-string = input()
-cursorL = deque()
+cursorL = deque(input())
 cursorR = deque()
-
-# 초기에 커서가 제일 우측에 있으니 cursorL에 순서대로 모두 넣고 시작
-for ch in string:
-    cursorL.append(ch)
 
 for _ in range(int(input())):
     order = input()
