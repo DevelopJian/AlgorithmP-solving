@@ -1,0 +1,25 @@
+from collections import deque
+ 
+def bfs():
+    while deq:
+        x, y = deq.pop()
+        for dx, dy in ((-1,0),(1,0),(0,-1),(0,1)):
+            nx, ny = x+dx, y+dy
+            # 조건 : 범위만족, 벽 아님
+            if 0<=nx<100 and 0<=ny<100 and maze[nx][ny] != 1:
+                deq.append((nx,ny))
+                maze[nx][ny] = 1  # visit 표시
+ 
+for _ in range(10):
+    test_case = int(input())
+    maze = [list(map(int, input())) for _ in range(100)]
+    # 도착점 찾기 (시작점은(1,1))
+    for i in range(100):
+        for j in range(100):
+            if maze[i][j] == 3:
+                ex, ey = i, j
+ 
+    deq = deque([(1,1)])
+    bfs()
+ 
+    print(f'#{test_case} {1 if maze[ex][ey] == 1 else 0}')
