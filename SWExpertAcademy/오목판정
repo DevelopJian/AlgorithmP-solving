@@ -1,0 +1,23 @@
+def check_board(n, board):
+    for i in range(n):
+        for j in range(n):
+            for dir in range(4):
+                summ = 0
+                row, col = i, j  # 초기화
+                while 0<= row <n and 0<= col <n and board[row][col] == 'o':
+                    summ += 1
+                    row += dx[dir]
+                    col += dy[dir]
+                    if summ == 5:
+                        return 'YES'
+    return 'NO'
+ 
+t = int(input())
+for tc in range(1, t+1):
+    n = int(input())
+    board = [list(input()) for _ in range(n)]
+ 
+    dx = [1,0,1,1] # 세로 가로 \ /
+    dy = [0,1,1,-1]
+ 
+    print(f'#{tc} {check_board(n, board)}')
