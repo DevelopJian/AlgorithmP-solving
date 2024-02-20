@@ -1,0 +1,19 @@
+def counting_nodes(root):
+    global cnt
+    cnt += 1
+    if tree[root] : # 자식 있다면
+        for sons in tree[root]:
+            counting_nodes(sons)
+
+t = int(input())
+for tc in range(1, t+1):
+    e, n = map(int, input().split()) # 간선갯수, 구할 subtree의 루트노드 -> 노드갯수 = e+1
+    lst = list(map(int, input().strip().split()))
+    tree = [[] for _ in range(e+2)] # 부모가 인덱스 자식이 값
+    for i in range(len(lst)//2) :
+        tree[lst[i*2]].append(lst[i*2+1])
+
+    cnt = 0
+    counting_nodes(n)
+
+    print(f'#{tc} {cnt}')
