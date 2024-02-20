@@ -1,0 +1,18 @@
+def tree(now, n):
+    global cnt
+    if 1 <= now * 2 <= n:  # 좌측자식 재귀
+        tree(now * 2, n)
+    nodes[now] = cnt  # 현재노드
+    cnt += 1
+    if 1 <= now * 2 + 1 <= n:  # 우측자식 재귀
+        tree(now * 2 + 1, n)
+ 
+T = int(input())
+for tc in range(1, T+1):
+    n = int(input())
+    nodes = [0 for _ in range(n+1)]  # 인덱스가 노드번호
+    cnt = 1
+ 
+    tree(1, n)
+ 
+    print(f'#{tc} {nodes[1]} {nodes[n//2]}')
