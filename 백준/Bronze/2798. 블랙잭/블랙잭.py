@@ -1,14 +1,10 @@
 n, m = map(int, input().split())
-card_list = list(map(int, input().split()))
-
-sums = 0
+card = list(map(int, input().split()))
 mx = 0
-
-for i in range(n):
-    for j in range(i+1, n):
+for i in range(n-2):
+    for j in range(i+1, n-1):
         for k in range(j+1, n):
-            sums = card_list[i] + card_list[j] + card_list[k]
-            if mx <= sums <= m:
-                mx = sums
-
+            sm = card[i] + card[j] + card[k]
+            if mx < sm <= m:
+                mx = sm
 print(mx)
