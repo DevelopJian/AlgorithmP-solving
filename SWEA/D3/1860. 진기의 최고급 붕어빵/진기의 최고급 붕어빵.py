@@ -4,11 +4,12 @@ for tc in range(1, t+1):
     lst = sorted(list(map(int, input().split())))
 
     sm = 0 # 지금까지 손님에게 준 + 지금 줄 붕어빵 수
-    poss = True
+    ans = 'Possible'
 
     for sec in lst:
         sm += 1
-        if sec//m * k - sm < 0:
-            poss = False
+        if sec//m * k < sm:
+            ans = 'Impossible'
             break
-    print(f'#{tc} {"Possible" if poss else "Impossible"}')
+            
+    print(f'#{tc} {ans}')
