@@ -1,9 +1,7 @@
 a, b = map(int, input().split()) # 가로세로
 n = int(input())
-alst = [0] # 가로리스트
-alst.append(a)
-blst= [0] # 세로리스트
-blst.append(b)
+alst = [0, a] # 가로리스트
+blst= [0, b] # 세로리스트
 
 for _ in range(n):
     a, b = map(int, input().split())
@@ -13,9 +11,8 @@ for _ in range(n):
         alst.append(b)
 alst.sort()
 blst.sort()
-# 차이들 리스트만들기
-xlst = []
-ylst = []
+# 차이 리스트만들기
+xlst, ylst = [], []
 for i in range(len(alst)-1):
     xlst.append(alst[i+1]-alst[i])
 for i in range(len(blst)-1):
@@ -23,6 +20,6 @@ for i in range(len(blst)-1):
 mx = 0
 for x in xlst:
     for y in ylst:
-        mx = max(mx, x*y)
+        mx = max(mx, x * y)
 
 print(mx)
