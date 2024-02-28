@@ -1,34 +1,28 @@
 import sys
 input = sys.stdin.readline
 
-bingo = [list(map(int, input().split())) for _ in range(5)]
-lst = [0] # 안쓰는 0번째 채워줌
-temp = [[0]*5 for _ in range(5)]
+arr = [list(map(int, input().split())) for _ in range(5)]
+# 사회자가 부르는 숫자 1차원 배열 생성
+lst = []
 for i in range(5):
-    lst = lst + list(map(int, input().split()))
-
-for num in range(1, 26): # num = 사회자가 부르는 수 몇번째인지
-    flag = False
-    for i in range(5):
-        for j in range(5):
-            if bingo[i][j] == lst[num]:
-                temp[i][j] = num
-                flag = True
-                break
-        if flag:
-            break
-
-# temp 줄마다 가장 큰 수 뽑기 -> 그 중 3번째로 작은수
-temp2 = list(zip(*temp)) # 전치행렬
-anslst =[]
+    lst += list(map(int, input().split()))
+# 번호마다 좌표위치 저장 (인덱스 = 빙고판에 있는 수, 값 = 좌표)
+# -> 사회자가 수를 부르면 좌표를 바로 알 수 있도록
+pos_lst = [0]*26
 for i in range(5):
-    anslst.append(max(temp[i])) # 가로
-    anslst.append(max(temp2[i])) # 세로
-mxa, mxb = 0, 0 # \ /
-for i in range(5):
-    mxa = max(mxa, temp[i][i])
-    mxb = max(mxb, temp[i][4-i])
-anslst.append(mxa)
-anslst.append(mxb)
+    for j in range(5):
+        pos_lst[arr[i][j]] = (i, j)
 
-print(sorted(anslst)[2])
+v = [[0]*10 for _ in range(4)] #v0~v3 빈도수 체크 # TODO 왜 *10? 넉넉잡아?
+for n in lst:
+    i, j = pos_lst[n]
+    v[0][i] += 1  # 가로갯수 누적
+    v[1][j] += 1  # 세로갯수 누적
+    v[2][i+j] += 1  # / 갯수 누적
+    v[3][i-j] += 1  # \ 갯수 누적
+    cnt = 0
+    for tlst in v:
+        cnt += tlst.count(5)
+    if cnt >= 3:
+        break
+print(sum(v[0]))  # 표시 누적된 횟수 = 사회자가 부른 횟수
