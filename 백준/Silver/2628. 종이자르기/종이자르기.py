@@ -17,9 +17,6 @@ for i in range(len(alst)-1):
     xlst.append(alst[i+1]-alst[i])
 for i in range(len(blst)-1):
     ylst.append(blst[i+1]-blst[i])
-mx = 0
-for x in xlst:
-    for y in ylst:
-        mx = max(mx, x * y)
+mx = max(xlst) * max(ylst)
 
 print(mx)
