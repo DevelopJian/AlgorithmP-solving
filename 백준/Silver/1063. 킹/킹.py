@@ -11,25 +11,11 @@ for idx, alh in enumerate(col):
         r[1] = int(idx)
 
 board = [[0]*9 for _ in range(9)]  # 0번째 행열 안쓰는것
-
+move_dct = {'R' : (0,1), 'L' : (0,-1), 'B' : (-1,0), 'T' : (1,0), \
+            'RT' : (1,1), 'LT' : (1,-1), 'RB' : (-1,1), 'LB' : (-1,-1)}
 for _ in range(n):
     order = input()
-    if order == 'R':
-        dx, dy = 0, 1
-    elif order == 'L':
-        dx, dy = 0, -1
-    elif order == 'B':
-        dx, dy = -1, 0
-    elif order == 'T':
-        dx, dy = 1, 0
-    elif order == 'RT':
-        dx, dy = 1, 1
-    elif order == 'LT':
-        dx, dy = 1, -1
-    elif order == 'RB':
-        dx, dy = -1, 1
-    elif order == 'LB':
-        dx, dy = -1, -1
+    dx, dy = move_dct[order]
 
     kx, ky = k[0] + dx, k[1] + dy
     # 옮길 킹자리가 범위 안이고
