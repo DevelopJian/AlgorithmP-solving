@@ -12,8 +12,6 @@ def bfs(a, b): # 시작점, 도착점
             if v[nxt] == 0:
                 q.append(nxt)
                 v[nxt] = v[c] + 1
-                if nxt == b:
-                    break
     return v[b]-1
 
 n = int(input()) # 전체사람수
