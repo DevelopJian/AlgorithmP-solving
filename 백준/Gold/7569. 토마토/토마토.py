@@ -1,4 +1,6 @@
 from collections import deque
+import sys
+input = sys.stdin.readline
 
 m, n, height = map(int, input().split()) #상자 가로세로, 상자수(높이)
 arr = [list(map(int, input().split())) for _ in range(n*height)]
@@ -15,10 +17,9 @@ def bfs():
         return 0
     elif len(q) == 0: # 초기에 익은게 하나도 없는 경우
         return -1
-
+    
     while q:
         x, y = q.popleft()
-
         # 사방에 있는 것 넣기
         for dx, dy in ((1,0),(-1,0),(0,1),(0,-1)):
             nx, ny = x+dx, y+dy
