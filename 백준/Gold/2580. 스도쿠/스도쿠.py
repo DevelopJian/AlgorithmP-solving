@@ -17,11 +17,16 @@ def possible(x, y, num):
             if sudoku[i][j] == num:
                 return False
     return True
+
 def dfs(idx):
+    global flag
+    if flag:
+        return
     if idx == n:
         for r in sudoku:
             print(*r)
-        exit()
+            flag = True
+        return
     for num in range(1, 10):
         x, y = lst[idx][0], lst[idx][1]
         if possible(x, y, num) == True:
@@ -36,4 +41,5 @@ for i in range(9):
         if sudoku[i][j] == 0:
             lst.append((i, j))
 n = len(lst)
+flag = False
 dfs(0)
