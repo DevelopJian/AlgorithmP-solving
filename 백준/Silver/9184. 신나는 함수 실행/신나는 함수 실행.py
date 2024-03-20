@@ -1,5 +1,10 @@
-dp = [[[1]*21 for _ in range(21)] for _ in range(21)]
-# dp 초기값 1로 만들어주는 이유는 어차피 하나라도 0이면 값이 1이기 때문에.
+# dp 테이블 만들기 (음수, 20초과 => 무조건 값이 같으므로 만들 필요없음.)
+dp = [[[0]*21 for _ in range(21)] for _ in range(21)]
+for i in range(21):
+    for j in range(21):
+        for k in range(21):
+            if i == 0 or j == 0 or k == 0:
+                dp[i][j][k] = 1
 for i in range(1, 21):
     for j in range(1, 21):
         for k in range(1, 21):
