@@ -1,30 +1,34 @@
-# visit 배열 중 최대숫자의 인덱스 중 젤큰것 구하기
-# 최대숫자가 여러명일 수도 있는 경우 고려
 from collections import deque
-def bfs(s):
-    q = deque([s])
+
+def bfs(start):
+    q = deque([(0, start)])  # (연락순서, 시작점)
     v = [0] * 101
-    v[s] = 1
-    mxidx = 0
-    mx = 0
+    v[start] = 1
+
+    mxtime = mxnode = 0
+
     while q:
-        n = q.popleft()
-        for i in adj[n]:
-            if not v[i]:
-                q.append(i)
-                v[i] = v[n] + 1
-                if v[i] == mx:
-                    if i > mxidx:
-                        mxidx = i
-                elif v[i] > mx:
-                    mx, mxidx = v[i], i
-    return mxidx
+        time, now = q.popleft()
+        # 같은 레벨 중 최대노드 갱신
+        if mxtime < time:
+            mxtime, mxnode = time, now
+        elif mxtime == time:
+            mxnode = max(mxnode, now)
+        for node in nodes[now]:
+            if not v[node]:
+                v[node] = 1
+                q.append((time + 1, node))
+    return mxnode
 
-for tc in range(1,11):
-    l, start = map(int, input().split())
-    lst = list(map(int, input().split()))
-    adj = [[] for _ in range(101)] # 연락 가능한 리스트 // 0은 안씀
-    for i in range(0,l,2):
-        adj[lst[i]].append(lst[i+1])  #단방향
+t = 10
+for tc in range(1, t+1):
+    n, start = map(int, input().split())
+    nodes = [[] for _ in range(101)]  # 인접 리스트
 
-    print(f'#{tc} {bfs(start)}')
+    arr = list(map(int, input().split()))
+    for i in range(0, n, 2):
+        nodes[arr[i]].append(arr[i+1])
+
+    ans = bfs(start)
+
+    print(f'#{tc} {ans}')
