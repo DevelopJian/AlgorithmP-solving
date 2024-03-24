@@ -1,22 +1,18 @@
 t = int(input())
 for tc in range(t):
     n = int(input())
-    dct = {}
-    types = set()
+    types = {}
+    typelst = []
     for _ in range(n):
         name, type = input().split()
-        if type not in dct:
-            dct[type] = [name]
+        if type not in types:
+            types[type] = 1
+            typelst.append(type)
         else:
-            dct[type].append(name)
-        types.add(type)
-    types = list(types)
-    nums = []
-    for tp in types:
-        nums.append(len(dct[tp]))
+            types[type] += 1
 
     ans = 1
-    for num in nums:
-        ans *= (num + 1)
+    for tp in typelst:
+        ans *= (types[tp] + 1)
 
     print(ans-1)
