@@ -11,4 +11,4 @@ else:
     for i in range(3, n):
         dp[i] = max(dp[i-3]+arr[i-1]+arr[i], dp[i-2]+arr[i], dp[i-1])
 
-    print(dp[-1])
+    print(max(dp))
