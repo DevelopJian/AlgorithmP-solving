@@ -24,5 +24,4 @@ for i in range(n):
 
 # 답 = 합의 max -1
 ans = max(dp[2]) - 1
-
 print(ans)
