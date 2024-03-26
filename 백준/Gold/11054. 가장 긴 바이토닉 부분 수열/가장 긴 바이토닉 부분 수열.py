@@ -1,8 +1,6 @@
-import sys
-input = sys.stdin.readline
-
 n = int(input())
 arr = list(map(int, input().split()))
+
 dp = [[1]*n for _ in range(3)]
 
 # 올라가는 수열 dp[0]
@@ -23,4 +21,5 @@ for i in range(n):
 
 # 답 = 합의 max -1
 ans = max(dp[2]) - 1
+
 print(ans)
