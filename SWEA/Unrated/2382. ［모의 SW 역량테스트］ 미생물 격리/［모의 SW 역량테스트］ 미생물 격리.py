@@ -42,7 +42,7 @@ for tc in range(1, t+1):
             i += 1 # 리스트 안없어진 경우에만 i += 1 됨
 
         # 군집 합하고 없애기
-        lst.sort(reverse=True) # 세로->가로-> 미생물수(큰 순서)
+        lst.sort(reverse = True) # 세로->가로-> 미생물수(큰 순서)
         idx = 1
         while idx < len(lst):
             # 앞에것과 같은 위치에 있다면
@@ -55,7 +55,7 @@ for tc in range(1, t+1):
 
     # 남아있는 미생물수 구하기
     ans = 0
-    for i in range(len(lst)):
-        ans += lst[i][2]
+    for l in lst:
+        ans += l[2]
 
     print(f'#{tc} {ans}')
