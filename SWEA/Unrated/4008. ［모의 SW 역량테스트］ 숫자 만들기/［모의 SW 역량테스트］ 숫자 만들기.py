@@ -2,8 +2,10 @@ def dfs(num, total): # 이번에 연산할 숫자 인덱스, 지금까지 계산
     global mx, mn
     # 종료조건, 정답처리
     if num == n:
-        mx = max(total, mx)
-        mn = min(total, mn)
+        if mx < total:
+            mx = total
+        if mn > total:
+            mn = total
         return
     # 재귀호출
     if opr[0]:
