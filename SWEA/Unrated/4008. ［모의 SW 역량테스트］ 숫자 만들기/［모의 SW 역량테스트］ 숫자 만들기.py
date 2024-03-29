@@ -18,13 +18,10 @@ def dfs(num, total): # 이번에 연산할 숫자 인덱스, 지금까지 계산
         opr[2] -= 1
         dfs(num + 1, total * nums[num])
         opr[2] += 1
-    if opr[3] and nums[num]: # 나눌 숫자가 0이 아닐 때 나누기
+    if opr[3] and nums[num]:
         opr[3] -= 1
         # 음수 나누기 주의
-        if total * nums[num] < 0 and total % nums[num] != 0:
-            dfs(num + 1, total // nums[num] + 1)
-        else:
-            dfs(num + 1, total // nums[num])
+        dfs(num + 1, int(total / nums[num]))
         opr[3] += 1
 
 t = int(input())
