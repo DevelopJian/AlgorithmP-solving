@@ -1,4 +1,6 @@
 from collections import deque
+import sys
+input = sys.stdin.readline
 def move():
     movebool = False
     v = [[0] * n for _ in range(n)]
